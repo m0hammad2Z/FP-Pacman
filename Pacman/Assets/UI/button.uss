@@ -1,0 +1,10 @@
+.unity-button:hover {
+    font-size: 40px;
+    rotate: 1deg;
+    transition-duration: 0.4s;
+    scale: 1.1 1.1;
+    transition-timing-function: ease;
+}
+
+.unity-button {
+}
