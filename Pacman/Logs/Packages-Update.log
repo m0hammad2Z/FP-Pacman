@@ -82,3 +82,14 @@ The following packages were updated:
   com.unity.ide.rider from version 3.0.21 to 3.0.24
   com.unity.inputsystem from version 1.5.1 to 1.6.1
   com.unity.render-pipelines.high-definition from version 14.0.7 to 14.0.8
+
+=== Thu Jul 13 19:33:40 2023
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.feature.development from version 1.0.1 to 1.0.2
+  com.unity.render-pipelines.high-definition from version 14.0.8 to 15.0.6
+  com.unity.test-framework from version 1.1.33 to 1.3.7
+  com.unity.timeline from version 1.7.4 to 1.8.2

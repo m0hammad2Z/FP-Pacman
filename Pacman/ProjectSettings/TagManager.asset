@@ -8,6 +8,7 @@ TagManager:
   - Power Pallet
   - Ghost
   - RactvArea
+  - SpeedBoost
   layers:
   - Default
   - TransparentFX

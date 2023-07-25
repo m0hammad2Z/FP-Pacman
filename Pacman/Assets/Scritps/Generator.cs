@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    public GameObject dotPrefab, powerPalletPrefab; // the dot prefab to spawn
+    public GameObject dotPrefab, powerPalletPrefab, speedBoostPrefab; // the dot prefab to spawn
     public float distanceBetweenDots = 1.0f; // the distance between each dot
     public float palletGenerateRate = 3;    // The rate of pallets to generate
+    public float speedBoostDotstGenerateRate = 1;    // The rate of speedBoostDots to generate
     public LayerMask wallLayer; // the layer for the walls
-    public Transform surface;   //The surface where the dots will be generated
+    public Transform surface;   // The surface where the dots will be generated
 
     public List<GameObject> gameObjects = new List<GameObject>();
     bool isGenerated;
@@ -70,11 +71,12 @@ public class Generator : MonoBehaviour
 
 
         var rand = 0.0f;
-        var xHeight = bounds.size.x / distanceBetweenDots;  //Calculate the height of x axis
-        var zHeight = bounds.size.z / distanceBetweenDots;  //Calculate the height of z axis
+        var xHeight = bounds.size.x / distanceBetweenDots;  // Calculate the height of x axis
+        var zHeight = bounds.size.z / distanceBetweenDots;  // Calculate the height of z axis
 
         //Normalize the rate
         float normalizedPalletGenerateRate = palletGenerateRate * ((xHeight * zHeight) / 100);
+        float normalizedspeedBoostGenerateRate = speedBoostDotstGenerateRate * ((xHeight * zHeight) / 100) + normalizedPalletGenerateRate;
 
         for (float x = minX; x <= maxX; x += distanceBetweenDots)
         {
@@ -88,6 +90,12 @@ public class Generator : MonoBehaviour
                     if (rand <= normalizedPalletGenerateRate)
                     {
                         GameObject o = Instantiate(powerPalletPrefab, new Vector3(x, 0.8f, z), Quaternion.identity);
+                        o.transform.SetParent(transform);
+                        gameObjects.Add(o);
+                    }
+                    else if (rand <= normalizedspeedBoostGenerateRate)
+                    {
+                        GameObject o = Instantiate(speedBoostPrefab, new Vector3(x, 0.8f, z), Quaternion.identity);
                         o.transform.SetParent(transform);
                         gameObjects.Add(o);
                     }

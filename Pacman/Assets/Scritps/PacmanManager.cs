@@ -7,10 +7,14 @@ public class PacmanManager : MonoBehaviour
     public static int score = 0;
     public static int hightScore = 0;
     public static int lives = 100;
+    public static int dashes = 6;
+    public static int boostAbilityTime = 10;
     public static bool isDie = false;
     public static bool isWin = false;
 
     public List<Ghost> ghosts = new List<Ghost>();
+
+    public static Abilities abilities;
 
     Vector3 pos;
 
@@ -30,7 +34,7 @@ public class PacmanManager : MonoBehaviour
         }
 
         if (other.gameObject.tag == "Power Pallet")
-        {
+        { 
             other.gameObject.GetComponent<Animator>().SetBool("isDestroy", true);
             foreach (Ghost g in ghosts)
             {
@@ -38,6 +42,13 @@ public class PacmanManager : MonoBehaviour
             }
 
             //Play sound
+            source.PlayOneShot(powerCollect);
+        }
+
+        if(other.gameObject.tag == "SpeedBoost")
+        {
+            abilities.SpeedBoost();
+            other.gameObject.GetComponent<Animator>().SetBool("isDestroy", true);
             source.PlayOneShot(powerCollect);
         }
     }
@@ -69,6 +80,7 @@ public class PacmanManager : MonoBehaviour
     private void Start()
     {
         source = GetComponent<AudioSource>();
+        abilities = GetComponent<Abilities>();
 
         pos = transform.position;
         score = 0;

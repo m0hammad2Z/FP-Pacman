@@ -64,6 +64,7 @@ public class UI : MonoBehaviour
             PacmanManager.isWin = false;
             PacmanManager.lives = 100;
             PacmanManager.score = 0;
+            PacmanManager.dashes = 6;
             pacmanManager.SetActiveGhosts();
         };
 

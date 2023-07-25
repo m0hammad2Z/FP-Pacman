@@ -35,6 +35,24 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f20cfaa-eaef-4cba-8984-6b5e0d67e6cc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""0528d8a9-9ca0-4281-bf26-1ea6ff4add1d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -92,6 +110,28 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""action"": ""WSDA"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5ba2b0d-8c26-430e-ad2a-22709afc1785"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad793ee5-0145-47ce-9548-d55e660d79d3"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -101,6 +141,8 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_WSDA = m_Movement.FindAction("WSDA", throwIfNotFound: true);
+        m_Movement_dash = m_Movement.FindAction("dash", throwIfNotFound: true);
+        m_Movement_jump = m_Movement.FindAction("jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,11 +205,15 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Movement;
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_Movement_WSDA;
+    private readonly InputAction m_Movement_dash;
+    private readonly InputAction m_Movement_jump;
     public struct MovementActions
     {
         private @InputMap m_Wrapper;
         public MovementActions(@InputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @WSDA => m_Wrapper.m_Movement_WSDA;
+        public InputAction @dash => m_Wrapper.m_Movement_dash;
+        public InputAction @jump => m_Wrapper.m_Movement_jump;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -180,6 +226,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @WSDA.started += instance.OnWSDA;
             @WSDA.performed += instance.OnWSDA;
             @WSDA.canceled += instance.OnWSDA;
+            @dash.started += instance.OnDash;
+            @dash.performed += instance.OnDash;
+            @dash.canceled += instance.OnDash;
+            @jump.started += instance.OnJump;
+            @jump.performed += instance.OnJump;
+            @jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -187,6 +239,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @WSDA.started -= instance.OnWSDA;
             @WSDA.performed -= instance.OnWSDA;
             @WSDA.canceled -= instance.OnWSDA;
+            @dash.started -= instance.OnDash;
+            @dash.performed -= instance.OnDash;
+            @dash.canceled -= instance.OnDash;
+            @jump.started -= instance.OnJump;
+            @jump.performed -= instance.OnJump;
+            @jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -207,5 +265,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     public interface IMovementActions
     {
         void OnWSDA(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

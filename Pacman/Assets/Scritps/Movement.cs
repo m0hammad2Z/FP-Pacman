@@ -1,17 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     private InputMap inputMap;
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
 
-    [SerializeField] float movementSpeed = 200;
+    public float movementSpeed = 200;
+
 
     Camera cam;
     Vector2 dir;
+    Vector3 movement;
+   
 
     private void Start()
     {
@@ -19,14 +23,24 @@ public class Movement : MonoBehaviour
         inputMap.Enable();
 
         cam = Camera.main;
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+
+        inputMap.Movement.dash.started += (ctx) =>
+        {
+            PacmanManager.abilities.Dash(rb, movement);
+        };
     }
 
     private void FixedUpdate()
     {
         dir = inputMap.Movement.WSDA.ReadValue<Vector2>();
-        Vector3 x = (transform.forward * dir.y + transform.right * dir.x) * movementSpeed * Time.deltaTime;
-        rigidbody.velocity = x;
+        movement = (transform.forward * dir.y + transform.right * dir.x) * movementSpeed * Time.fixedDeltaTime;
+
+
+        if (!PacmanManager.abilities.isDashing)
+            rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+
+        
 
     }
 
