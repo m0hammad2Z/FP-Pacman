@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    public GameObject dotPrefab, powerPalletPrefab, speedBoostPrefab; // the dot prefab to spawn
+    public GameObject dotPrefab, powerPalletPrefab, speedBoostPrefab, throughWallsPrefab; // the dot prefab to spawn
     public float distanceBetweenDots = 1.0f; // the distance between each dot
     public float palletGenerateRate = 3;    // The rate of pallets to generate
-    public float speedBoostDotstGenerateRate = 1;    // The rate of speedBoostDots to generate
+    public float speedBoostDotstGenerateRate = 1.5f;    // The rate of speedBoostDots to generate
+    public float throughWallsDotstGenerateRate = 1.5f;    // The rate of Through Walls Dots to generate
     public LayerMask wallLayer; // the layer for the walls
     public Transform surface;   // The surface where the dots will be generated
 
@@ -77,6 +78,7 @@ public class Generator : MonoBehaviour
         //Normalize the rate
         float normalizedPalletGenerateRate = palletGenerateRate * ((xHeight * zHeight) / 100);
         float normalizedspeedBoostGenerateRate = speedBoostDotstGenerateRate * ((xHeight * zHeight) / 100) + normalizedPalletGenerateRate;
+        float normalizedthroughWallsGenerateRate = throughWallsDotstGenerateRate * ((xHeight * zHeight) / 100) + normalizedspeedBoostGenerateRate;
 
         for (float x = minX; x <= maxX; x += distanceBetweenDots)
         {
@@ -96,6 +98,11 @@ public class Generator : MonoBehaviour
                     else if (rand <= normalizedspeedBoostGenerateRate)
                     {
                         GameObject o = Instantiate(speedBoostPrefab, new Vector3(x, 0.8f, z), Quaternion.identity);
+                        o.transform.SetParent(transform);
+                        gameObjects.Add(o);
+                    }else if(rand <= normalizedthroughWallsGenerateRate)
+                    {
+                        GameObject o = Instantiate(throughWallsPrefab, new Vector3(x, 0.8f, z), Quaternion.identity);
                         o.transform.SetParent(transform);
                         gameObjects.Add(o);
                     }

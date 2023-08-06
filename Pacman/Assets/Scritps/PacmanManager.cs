@@ -9,6 +9,7 @@ public class PacmanManager : MonoBehaviour
     public static int lives = 100;
     public static int dashes = 6;
     public static int boostAbilityTime = 10;
+    public static int throughWallsDuration = 10;
     public static bool isDie = false;
     public static bool isWin = false;
 
@@ -48,6 +49,13 @@ public class PacmanManager : MonoBehaviour
         if(other.gameObject.tag == "SpeedBoost")
         {
             abilities.SpeedBoost();
+            other.gameObject.GetComponent<Animator>().SetBool("isDestroy", true);
+            source.PlayOneShot(powerCollect);
+        }
+
+        if (other.gameObject.tag == "ThroughWalls")
+        {
+            abilities.SeeThroughWalls();
             other.gameObject.GetComponent<Animator>().SetBool("isDestroy", true);
             source.PlayOneShot(powerCollect);
         }

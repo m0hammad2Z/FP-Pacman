@@ -4,29 +4,23 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public static NewBehaviourScript Instance { get; private set; }
 
-    public Rigidbody rb;
+    public float sphereSpeed = 10;
 
-    private float time = 0.0f;
-    private bool isMoving = false;
-    private bool isJumpPressed = false;
-
-
-    void Start()
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    void Update()
-    {
-        print("Time : " + Time.time);
-        print("Delta Time : " + Time.deltaTime);
-        print("fixed Time : " + Time.fixedDeltaTime);
-        print("Smoot Time : " + Time.smoothDeltaTime);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
 
 
-
-    
 }

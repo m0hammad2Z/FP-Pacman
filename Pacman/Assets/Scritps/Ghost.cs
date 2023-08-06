@@ -16,6 +16,9 @@ public class Ghost : MonoBehaviour
     [SerializeField] float scatterTime;
     [SerializeField] float reactiveTime;
 
+    [SerializeField] Material notActiveMaterial;
+    Material material;
+
     NavMeshAgent agent;
     public Vector3 target;
     Bounds bounds;
@@ -32,6 +35,8 @@ public class Ghost : MonoBehaviour
         isActive = true;
         agent = GetComponent<NavMeshAgent>();
         bounds = surface.GetComponent<MeshRenderer>().bounds;
+
+        material = transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material;
     }
     private void Update()
     {
@@ -77,7 +82,6 @@ public class Ghost : MonoBehaviour
             //GetComponent<CinemachineCollisionImpulseSource>().enabled = false;
 
         }
-
         //Go to the target
         agent.SetDestination(target);
     }
@@ -86,17 +90,25 @@ public class Ghost : MonoBehaviour
     {
         target = pacman.position;
         isScattering = false;
+        ChangeMaterial(material);
     }
     void GoToRandomPoint()
     {
         isScattering = true;
         scatterTimer = scatterTime;
         target = GetRandomTargetPoint();
-        
+        ChangeMaterial(material);
+
     }
     void GoToReactiveArea()
     {
         target = reactiveArea.position;
+        ChangeMaterial(notActiveMaterial);
+    }
+
+    void ChangeMaterial(Material mat)
+    {
+        transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material = mat;
     }
 
     //Generate a random point

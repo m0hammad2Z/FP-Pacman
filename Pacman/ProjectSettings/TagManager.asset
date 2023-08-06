@@ -9,6 +9,8 @@ TagManager:
   - Ghost
   - RactvArea
   - SpeedBoost
+  - Wall
+  - ThroughWalls
   layers:
   - Default
   - TransparentFX

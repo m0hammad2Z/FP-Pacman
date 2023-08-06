@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class Abilities : MonoBehaviour
 {
@@ -10,9 +13,16 @@ public class Abilities : MonoBehaviour
     [HideInInspector] public bool isDashing;
 
 [Header("Speed Boost")]
-    [SerializeField] float boostMovementSpeed = 40;
-    public bool isBoosting;
+    [SerializeField] float boostMovementSpeed = 50;
+    [HideInInspector] public bool isBoosting;
     float tempSpeed;
+
+[Header("Throug Wall")]
+    [SerializeField] float radius;
+    [SerializeField] float changeDuration = 5; 
+    [SerializeField] Material transparentWallMat; [SerializeField] Material wallMat; [SerializeField] Material glowWallMat;
+    [HideInInspector] public bool canSeeThroughWalls = false;
+
 
     private void Start()
     {
@@ -46,8 +56,64 @@ public class Abilities : MonoBehaviour
             GetComponent<Movement>().movementSpeed = tempSpeed;
             isBoosting = false;
         }
+    }
 
-        
+    public void SeeThroughWalls()
+    {
+        StartCoroutine(ThrougWalls());
+        IEnumerator ThrougWalls()
+        {
+            canSeeThroughWalls = true;
+            yield return new WaitForSeconds(PacmanManager.throughWallsDuration);
+            canSeeThroughWalls = false;
+        }
+    }
+
+    public void ThroughWallsMethod()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.GetChild(1).position, radius);
+
+        foreach (Collider collider in colliders)
+        {
+            // Check if the collider belongs to a wall (you can use tags or layers here)
+            if (collider.CompareTag("Wall"))
+            {
+                // Get the wall's renderer component
+                Renderer wallRenderer = collider.GetComponent<Renderer>();
+
+                // Change the material to the new one
+                wallRenderer.material = transparentWallMat;
+
+                // Start a coroutine to revert the material after a delay
+                StartCoroutine(RevertMaterialCoroutine(wallRenderer));
+            }
+        }
+
+    }
+
+
+    private IEnumerator RevertMaterialCoroutine(Renderer renderer)
+    {
+        // Wait for the specified duration
+        yield return new WaitForSeconds(changeDuration);
+
+        // Revert the material to the original one
+        renderer.material = wallMat;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.GetChild(1).position, radius);
+    }
+
+
+    private void Update()
+    {
+        if(canSeeThroughWalls)
+        {
+            ThroughWallsMethod();
+        }
     }
 
 }
