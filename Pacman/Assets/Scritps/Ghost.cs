@@ -125,4 +125,11 @@ public class Ghost : MonoBehaviour
         }
     }
 
+    // Draw the chase bounds
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, chaseDistance);
+        
+    }
 }

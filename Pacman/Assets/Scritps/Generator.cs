@@ -80,6 +80,10 @@ public class Generator : MonoBehaviour
         float normalizedspeedBoostGenerateRate = speedBoostDotstGenerateRate * ((xHeight * zHeight) / 100) + normalizedPalletGenerateRate;
         float normalizedthroughWallsGenerateRate = throughWallsDotstGenerateRate * ((xHeight * zHeight) / 100) + normalizedspeedBoostGenerateRate;
 
+        print(normalizedPalletGenerateRate);
+        print(normalizedspeedBoostGenerateRate);
+        print(normalizedthroughWallsGenerateRate);
+
         for (float x = minX; x <= maxX; x += distanceBetweenDots)
         {
             for (float z = minZ; z <= maxZ; z += distanceBetweenDots)
