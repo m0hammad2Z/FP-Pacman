@@ -16,7 +16,7 @@ You can play the game online by visiting this link. You can also download the ga
 If you encounter any issues or find bugs while playing the game, please report them <a href="https://github.com/m0hammad2Z/FP-Pacman/issues">here</a>.
 
 ## Credits
-This game was developed by m0hammad2Z as a personal project. The game assets were createed by me. The game music and sound effects were obtained from Freesound.
+This game was developed by m0hammad2Z as a personal project. The game assets were createed using blender. The game music and sound effects were obtained from Freesound.
 
 ## License
 This game is licensed under the MIT License. See the LICENSE file for more details.
