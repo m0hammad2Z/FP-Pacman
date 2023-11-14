@@ -12,7 +12,8 @@ You can play the game online by visiting this link. You can also download the ga
 ## Screenshots
 <img src="https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2MS5wbmc=/347x500/bN8KOT.png" width=200 >&nbsp; &nbsp;<img src="https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2MC5wbmc=/original/JDyleC.png" width=200 >&nbsp; &nbsp; <img src="https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2My5wbmc=/347x500/O5wBvB.png" width=200 >&nbsp; &nbsp;<img src="https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2Mi5wbmc=/347x500/V%2BZMND.png" width=200 >
 
-
+## Issues and Bug Reports
+If you encounter any issues or find bugs while playing the game, please report them <a href="https://github.com/m0hammad2Z/FP-Pacman/issues">here</a>.
 
 ## Credits
 This game was developed by m0hammad2Z as a personal project. The game assets were createed by me. The game music and sound effects were obtained from Freesound.
