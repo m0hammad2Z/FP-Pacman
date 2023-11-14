@@ -10,7 +10,7 @@ You can play the game online by visiting this link. You can also download the ga
 - Shift - Push Pacman
 
 ## Screenshots
-<img src="https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2MS5wbmc=/347x500/bN8KOT.png" width=200 ><img src="https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2MC5wbmc=/original/JDyleC.png" width=200 >
+<img src="https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2MS5wbmc=/347x500/bN8KOT.png" width=200 >    <img src="https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2MC5wbmc=/original/JDyleC.png" width=200 >
 
 
 ## Credits
