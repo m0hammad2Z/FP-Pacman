@@ -10,7 +10,8 @@ You can play the game online by visiting this link. You can also download the ga
 - Shift - Push Pacman
 
 ## Screenshots
-![Image 1](https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2MS5wbmc=/347x500/bN8KOT.png) ![Image 2](https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2MC5wbmc=/original/JDyleC.png)
+<img src="https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2MS5wbmc=/347x500/bN8KOT.png" width=200 ><img src="https://img.itch.zone/aW1hZ2UvMjEwNjg5MC8xMjQwNDM2MC5wbmc=/original/JDyleC.png" width=200 >
+
 
 ## Credits
 This game was developed by m0hammad2Z as a personal project. The game assets were createed by me. The game music and sound effects were obtained from Freesound.
